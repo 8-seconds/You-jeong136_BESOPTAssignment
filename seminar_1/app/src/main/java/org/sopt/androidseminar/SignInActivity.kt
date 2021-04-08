@@ -25,11 +25,12 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private fun initButtonClickEvent() {
+        //로그인 버튼 클릭 시
         binding.btnLogin.setOnClickListener {
 
             val userId:String = binding.etID.text.toString()
             val userPw:String = binding.etPassword.text.toString()
-
+            
             if(userId.isNullOrBlank() || userPw.isNullOrBlank()){
                 Toast.makeText(this@SignInActivity,
                     "id/pw를 확인해주세요!", Toast.LENGTH_LONG).show()
@@ -42,10 +43,11 @@ class SignInActivity : AppCompatActivity() {
             }
         }
 
+        //회원가입 클릭 시
         val requestActivity: ActivityResultLauncher<Intent> = registerForActivityResult(
-                StartActivityForResult() // ◀ StartActivityForResult 처리를 담당
+                StartActivityForResult()
         ) { activityResult ->
-            // action to do something
+            //돌아온 후 데이터 처리
             binding.etID.setText(activityResult.data!!.getStringExtra("regiId").toString());
             binding.etPassword.setText(activityResult.data!!.getStringExtra("regiPw").toString());
         }
