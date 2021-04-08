@@ -7,8 +7,8 @@
     tools:context=".HomeActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="368dp"
-        android:layout_height="221dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,14 +46,31 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvGithubId" />
 
-        <TextView
-            android:id="@+id/tvIntroduce"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ScrollView
+            android:layout_width="314dp"
+            android:layout_height="64dp"
             android:layout_marginStart="26dp"
-            android:layout_marginTop="10dp"
-            android:text="java 말고 코틀린으로 개발하는 것은 처음입니다!\n 잘 부탁 드립니다."
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="71dp"
+            android:layout_marginBottom="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvName" />
+            app:layout_constraintTop_toBottomOf="@+id/tvName">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvIntroduce"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="개발 초보\n 스크롤뷰 확인\n scrollview\n\n scrollview\n\n scrollview\n
+                    scrollview\nscrollview\nscrollview\nscrollview\nscrollview\nscrollview\nscrollview\n" />
+            </LinearLayout>
+        </ScrollView>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

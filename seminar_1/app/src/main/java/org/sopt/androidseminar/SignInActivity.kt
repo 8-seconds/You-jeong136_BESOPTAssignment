@@ -35,6 +35,7 @@ class SignInActivity : AppCompatActivity() {
                     "id/pw를 확인해주세요!", Toast.LENGTH_LONG).show()
             } else {
                 val intent1 = Intent(this@SignInActivity, HomeActivity::class.java)
+                intent1.putExtra("userId", userId);
                 startActivity(intent1)
                 Toast.makeText(this@SignInActivity,
                         "로그인 성공", Toast.LENGTH_LONG).show()

@@ -3,13 +3,23 @@ package org.sopt.androidseminar
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import kotlinx.android.synthetic.main.activity_home.*
+import org.sopt.androidseminar.databinding.ActivityHomeBinding
+import org.sopt.androidseminar.databinding.ActivitySigninBinding
 
 class HomeActivity : AppCompatActivity() {
     private val TAG:String= "SignUpActivity";
+    private lateinit var binding: ActivityHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+
+        binding = ActivityHomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val userid: String? = intent.getStringExtra("userId")
+        tvGithubId.text = userid
+
         Log.d(TAG, "onCreate")
     }
 
