@@ -7,9 +7,12 @@
     tools:context=".HomeActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clMyInfo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="30dp"
+        android:layout_marginEnd="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -18,6 +21,7 @@
             android:id="@+id/ivMyIcon"
             android:layout_width="86dp"
             android:layout_height="80dp"
+            android:layout_marginTop="10dp"
             android:src="@mipmap/ic_launcher"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
@@ -28,16 +32,17 @@
             android:id="@+id/tvGithubId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="26dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:text="@string/myGithubId"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivMyIcon" />
+
         <TextView
             android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="26dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:text="@string/myName"
             android:textSize="18sp"
@@ -47,13 +52,13 @@
 
         <ScrollView
             android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="26dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="26dp"
-            android:layout_marginBottom="15dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="139dp"
+            android:layout_marginBottom="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnMore"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvName">
 
@@ -71,5 +76,33 @@
             </LinearLayout>
         </ScrollView>
 
+        <Button
+            android:id="@+id/btnMore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="135dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="5dp"
+            android:text="More"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvRepoList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="5dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clMyInfo" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
