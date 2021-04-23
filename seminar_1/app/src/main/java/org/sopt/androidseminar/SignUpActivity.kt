@@ -37,8 +37,8 @@ class SignUpActivity : AppCompatActivity() {
             } else {
                 val result = Intent()
                 result.putExtra("regiName", userName)
-                result.putExtra("regiId", userId)
-                result.putExtra("regiPw", userPw)
+                    .putExtra("regiId", userId)
+                    .putExtra("regiPw", userPw)
 
                 setResult(Activity.RESULT_OK, result)
                 finish()

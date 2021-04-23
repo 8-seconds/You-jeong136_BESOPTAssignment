@@ -3,9 +3,7 @@ package org.sopt.androidseminar
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import kotlinx.android.synthetic.main.activity_home.*
 import org.sopt.androidseminar.databinding.ActivityHomeBinding
-import org.sopt.androidseminar.databinding.ActivitySigninBinding
 
 class HomeActivity : AppCompatActivity() {
     private val TAG:String= "SignUpActivity";
@@ -18,7 +16,7 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val userid: String? = intent.getStringExtra("userId")
-        tvGithubId.text = userid
+        binding.tvGithubId.text = userid
 
         Log.d(TAG, "onCreate")
     }

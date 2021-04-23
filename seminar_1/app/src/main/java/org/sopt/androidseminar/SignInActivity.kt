@@ -24,20 +24,21 @@ class SignInActivity : AppCompatActivity() {
 
     }
 
+
     private fun initButtonClickEvent() {
         //로그인 버튼 클릭 시
         binding.btnLogin.setOnClickListener {
 
             val userId:String = binding.etID.text.toString()
             val userPw:String = binding.etPassword.text.toString()
-            
-            if(userId.isNullOrBlank() || userPw.isNullOrBlank()){
+
+            if(isLoginInputNullorBlank(userId, userPw)){
                 Toast.makeText(this@SignInActivity,
                     "id/pw를 확인해주세요!", Toast.LENGTH_LONG).show()
             } else {
-                val intent1 = Intent(this@SignInActivity, HomeActivity::class.java)
-                intent1.putExtra("userId", userId);
-                startActivity(intent1)
+                val homeIntent = Intent(this@SignInActivity, HomeActivity::class.java)
+                homeIntent.putExtra("userId", userId);
+                startActivity(homeIntent)
                 Toast.makeText(this@SignInActivity,
                         "로그인 성공", Toast.LENGTH_LONG).show()
             }
@@ -48,17 +49,19 @@ class SignInActivity : AppCompatActivity() {
                 StartActivityForResult()
         ) { activityResult ->
             //돌아온 후 데이터 처리
-            binding.etID.setText(activityResult.data!!.getStringExtra("regiId").toString());
-            binding.etPassword.setText(activityResult.data!!.getStringExtra("regiPw").toString());
+            binding.etID.setText(activityResult.data?.getStringExtra("regiId").toString());
+            binding.etPassword.setText(activityResult.data?.getStringExtra("regiPw").toString());
         }
 
         binding.tvRegister.setOnClickListener {
-            val intent2 = Intent(this@SignInActivity, SignUpActivity::class.java)
-            requestActivity.launch(intent2)
+            val signUpIntent = Intent(this@SignInActivity, SignUpActivity::class.java)
+            requestActivity.launch(signUpIntent)
         }
 
 
     }
+
+    private fun isLoginInputNullorBlank(id: String, password: String) = id.isNullOrBlank() || password.isNullOrBlank();
 
     override fun onStart() {
         super.onStart()
