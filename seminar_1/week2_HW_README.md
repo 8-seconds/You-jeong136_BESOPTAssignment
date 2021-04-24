@@ -44,7 +44,9 @@
 
           * 여기서 ellipsize는 ...을 나타낼 위치를 가리키기도 함. end면 문장의 끝에 ...을 표시, start면 맨앞에, middle은 중간에 ... 을 표시함. (그 외에는 marquee도 존재 )
 
-* 선택 (level 2) _ 추가예정
-  - [ ] gridLayoutManager 사용해보기 
+* 선택 (level 2) _ 시험 끝나면 추가예정....
+  - [x] gridLayoutManager 사용해보기 
   - [ ] 여러 viewHolder를 만들어 recyclerView 안에 2가지 이상의 뷰를 보여주기
-  - [ ] recyclerView Item 기능 구현하기
+  - [x] recyclerView Item 기능 구현하기 _ change 버튼 추가 클릭 시 grid <-> linear layoutManager 
+
+* 선택 (level3) _ 시험 끝나면 추가예정...
