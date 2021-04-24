@@ -53,7 +53,8 @@
 
   * 생명주기 호출 _ 로그 캡처
 
-    * [그림](C:\Users\user\Desktop\lifecycle_log.PNG)
+    * ![lifecycle_log](https://user-images.githubusercontent.com/59916029/115951971-9443b800-a51e-11eb-8b45-462ba863965d.PNG)
+
 
   * 배운 내용
 
