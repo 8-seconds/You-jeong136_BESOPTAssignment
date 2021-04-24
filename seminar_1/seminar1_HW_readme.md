@@ -62,6 +62,6 @@
 
 * 선택 (level2)
 
-  - [ ] 변수이름 체크
+  - [x] 변수이름 체크
   - [ ] constraintLayout _ chain, guideLine 이용 뷰
   - [x] 자기 소개 부분  _ scrollView로 만들기. 
