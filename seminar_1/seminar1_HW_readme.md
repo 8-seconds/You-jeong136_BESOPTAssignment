@@ -53,7 +53,7 @@
 
   * 생명주기 호출 _ 로그 캡처
 
-    * ![](C:\Users\user\Desktop\lifecycle_log.PNG)
+    * [그림](C:\Users\user\Desktop\lifecycle_log.PNG)
 
   * 배운 내용
 
