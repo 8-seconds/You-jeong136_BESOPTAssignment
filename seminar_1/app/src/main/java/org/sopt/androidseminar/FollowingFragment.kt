@@ -10,15 +10,16 @@ import org.sopt.androidseminar.databinding.FragmentFollowingBinding
 class FollowingFragment : Fragment() {
 
     lateinit var followingListAdapter: FollowingListAdapter
-    lateinit var binding: FragmentFollowingBinding
-    //여기서 바로 = fragment~.inflate 하지 말아라 _ get()으로 받아와야  null safty 하다 _ 코드 참고.
+    private var _binding: FragmentFollowingBinding? = null
+    private val binding get() = _binding?:error("View를 참조하기 위해 binding이 초기화 되지 않았습니다.")
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentFollowingBinding.inflate(inflater, container, false)
+        _binding = FragmentFollowingBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -49,6 +50,11 @@ class FollowingFragment : Fragment() {
             )
         )
         followingListAdapter.notifyDataSetChanged()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }
