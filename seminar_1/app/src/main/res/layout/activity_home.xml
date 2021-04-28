@@ -72,8 +72,7 @@
                     android:id="@+id/tvIntroduce"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="개발 초보\n 스크롤뷰 확인\n scrollview\n\n scrollview\n\n scrollview\n
-                    scrollview\nscrollview\nscrollview\nscrollview\nscrollview\nscrollview\nscrollview\n" />
+                    android:text="@string/scroooolllll" />
             </LinearLayout>
         </ScrollView>
 
@@ -83,7 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="88dp"
             android:layout_marginEnd="16dp"
-            android:text="More"
+            android:text="@string/more"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -94,7 +93,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="10dp"
-            android:text="Change"
+            android:text="@string/change"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
