@@ -1,13 +1,14 @@
-package org.sopt.androidseminar
+package org.sopt.androidseminar.presentation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.sopt.androidseminar.databinding.ItemFollowUserBinding
+import org.sopt.androidseminar.presentation.model.FollowingUserInfo
 
 class FollowingListAdapter: RecyclerView.Adapter<FollowingListAdapter.FollowingUserViewHolder>(){
 
-    val userList = mutableListOf<FollowingUserInfo>()
+    private var followList = mutableListOf<FollowingUserInfo>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -22,14 +23,29 @@ class FollowingListAdapter: RecyclerView.Adapter<FollowingListAdapter.FollowingU
     }
 
     override fun onBindViewHolder(
-        holder: FollowingListAdapter.FollowingUserViewHolder,
-        position: Int
+            holder: FollowingUserViewHolder,
+            position: Int
     ) {
-       holder.onBind(userList[position])
+       holder.onBind(followList[position])
     }
 
-    override fun getItemCount(): Int = userList.size
+    override fun getItemCount(): Int = followList.size
 
+    fun replaceList(newList: List<FollowingUserInfo>){
+        followList = newList.toMutableList()
+        notifyDataSetChanged()
+    }
+
+    //dataBinding
+    class FollowingUserViewHolder(
+            private val binding: ItemFollowUserBinding
+    ):RecyclerView.ViewHolder(binding.root){
+        fun onBind(followingUserInfo: FollowingUserInfo){
+            binding.followUserInfo = followingUserInfo
+        }
+    }
+
+    /*  //viewBinding
     class FollowingUserViewHolder(
         private val binding: ItemFollowUserBinding
     ):RecyclerView.ViewHolder(binding.root) {
@@ -37,4 +53,5 @@ class FollowingListAdapter: RecyclerView.Adapter<FollowingListAdapter.FollowingU
             binding.followUserName.text = followingUserInfo.userName
         }
     }
+    */
 }

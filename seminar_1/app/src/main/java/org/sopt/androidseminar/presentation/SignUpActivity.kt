@@ -1,4 +1,4 @@
-package org.sopt.androidseminar
+package org.sopt.androidseminar.presentation
 
 import android.app.Activity
 import android.content.Intent
