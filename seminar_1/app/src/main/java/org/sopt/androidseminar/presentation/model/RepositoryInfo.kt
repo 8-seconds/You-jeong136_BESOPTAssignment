@@ -1,4 +1,4 @@
-package org.sopt.androidseminar
+package org.sopt.androidseminar.presentation.model
 
 data class RepositoryInfo(
     val repoName: String,

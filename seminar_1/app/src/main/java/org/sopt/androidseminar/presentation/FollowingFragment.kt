@@ -1,15 +1,20 @@
-package org.sopt.androidseminar
+package org.sopt.androidseminar.presentation
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import org.sopt.androidseminar.data.FollowingDataSource
+import org.sopt.androidseminar.data.LocalFollowingDataSource
 import org.sopt.androidseminar.databinding.FragmentFollowingBinding
+
 
 class FollowingFragment : Fragment() {
 
-    lateinit var followingListAdapter: FollowingListAdapter
+    private lateinit var followingListAdapter: FollowingListAdapter
+    private lateinit var followDataSource: FollowingDataSource
+
     private var _binding: FragmentFollowingBinding? = null
     private val binding get() = _binding?:error("View를 참조하기 위해 binding이 초기화 되지 않았습니다.")
 
@@ -27,29 +32,13 @@ class FollowingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         followingListAdapter = FollowingListAdapter()
+        followDataSource = LocalFollowingDataSource()
+        val followList = followDataSource.fetchFollowingData()
+
         binding.userList.adapter = followingListAdapter
 
-        followingListAdapter.userList.addAll(
-            listOf<FollowingUserInfo>(
-                FollowingUserInfo(
-                    userImage = "지금은 빈킨",
-                    userName = "jinsu1"
-                ),
-                FollowingUserInfo(
-                    userImage = "지금은 빈킨",
-                    userName = "jinsu2"
-                ),
-                FollowingUserInfo(
-                    userImage = "지금은 빈킨",
-                    userName = "jinsu3"
-                ),FollowingUserInfo(
-                    userImage = "지금은 빈킨",
-                    userName = "jinsu4"
-                )
+        followingListAdapter.replaceList(followList)
 
-            )
-        )
-        followingListAdapter.notifyDataSetChanged()
     }
 
     override fun onDestroyView() {

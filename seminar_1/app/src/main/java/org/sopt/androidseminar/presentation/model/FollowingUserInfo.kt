@@ -1,4 +1,4 @@
-package org.sopt.androidseminar
+package org.sopt.androidseminar.presentation.model
 
 data class FollowingUserInfo(
     val userImage: String,
