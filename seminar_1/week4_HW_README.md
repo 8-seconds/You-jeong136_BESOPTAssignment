@@ -4,13 +4,11 @@ level 1 : 로그인 / 회원가입 통신 구현하기!
 
 - postMan 테스트 사진
   - 회원가입의 경우
-    - ![](C:\Users\user\Desktop\postman_signup.PNG)
+    [postman signup](https://user-images.githubusercontent.com/59916029/118387405-681ce200-b659-11eb-85a3-6d013596d94c.PNG)
   - 로그인의 경우
-    - ![](C:\Users\user\Desktop\postman_signin.PNG)
+    [postman signin](https://user-images.githubusercontent.com/59916029/118387403-66ebb500-b659-11eb-8119-15575749553f.PNG)
 - 구현 완료 gif 
-  - ![](C:\Users\user\Downloads\ezgif.com-gif-maker.gif)
-
-
+    [avd gif](https://user-images.githubusercontent.com/59916029/118387396-56d3d580-b659-11eb-83f5-de25bb8d574a.gif)
 
 * retrofit interface와 구현체 코드 
 
