@@ -81,14 +81,14 @@ class SignInActivity : AppCompatActivity() {
             override fun onResponse(call: Call<ResponseLoginData>, response: Response<ResponseLoginData>) {
                 if(response.isSuccessful){
                     val data = response.body()?.data
-
+                    val nickname = data?.user_nickname
                     Toast.makeText(this@SignInActivity,
-                            "로그인 성공 " + data?.user_nickname, Toast.LENGTH_LONG).show()
+                            "로그인 성공 $nickname", Toast.LENGTH_LONG).show()
 
                     val homeIntent = Intent(this@SignInActivity, HomeActivity::class.java)
                     homeIntent.putExtra("userId", userId);
+                    homeIntent.putExtra("userName",  nickname)
                     startActivity(homeIntent)
-
                 }
                 else {
                     val gson = Gson()

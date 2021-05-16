@@ -11,5 +11,4 @@ object ServiceCreator {
         .addConverterFactory(GsonConverterFactory.create()) //retrofit에서 json을 dataClass로 바꿔줄 gson 연결
         .build()
     val soptService: SoptService = retrofit.create(SoptService::class.java)
-    //object _ singleton 구현
 }

@@ -28,7 +28,9 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val userid: String? = intent.getStringExtra("userId")
+        val username : String? = intent.getStringExtra("userName")
         binding.tvGithubId.text = userid
+        binding.tvName.text = username
 
         repositoryListAdapter = RepositoryListAdapter()
         repoDataSource = LocalRepositoryDataSource()
