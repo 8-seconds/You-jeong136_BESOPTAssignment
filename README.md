@@ -5,5 +5,3 @@ BE SOPT 28th assignment
 
 [week2 readme](https://github.com/8-seconds/You-jeong136_BESOPTAssignment/blob/week2/seminar_1/week2_HW_README.md)
 
-[week4_readme](https://github.com/8-seconds/You-jeong136_BESOPTAssignment/blob/week4/seminar_1/week4_HW_README.md)
-
