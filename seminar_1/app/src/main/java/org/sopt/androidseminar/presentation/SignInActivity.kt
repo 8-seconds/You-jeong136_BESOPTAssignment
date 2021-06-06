@@ -8,6 +8,15 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import org.sopt.androidseminar.databinding.ActivitySigninBinding
 import androidx.activity.result.contract.ActivityResultContracts.*
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import org.sopt.androidseminar.api.ServiceCreator
+import org.sopt.androidseminar.data.request.RequestLoginData
+import org.sopt.androidseminar.data.response.ErrorResponse
+import org.sopt.androidseminar.data.response.ResponseLoginData
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SignInActivity : AppCompatActivity() {
     private val TAG:String= "SignInActivity";
@@ -35,11 +44,12 @@ class SignInActivity : AppCompatActivity() {
                 Toast.makeText(this@SignInActivity,
                     "id/pw를 확인해주세요!", Toast.LENGTH_LONG).show()
             } else {
-                val homeIntent = Intent(this@SignInActivity, HomeActivity::class.java)
-                homeIntent.putExtra("userId", userId);
-                startActivity(homeIntent)
-                Toast.makeText(this@SignInActivity,
-                        "로그인 성공", Toast.LENGTH_LONG).show()
+                callLoginService(userId, userPw)
+//                val homeIntent = Intent(this@SignInActivity, HomeActivity::class.java)
+//                homeIntent.putExtra("userId", userId);
+//                startActivity(homeIntent)
+//                Toast.makeText(this@SignInActivity,
+//                        "로그인 성공", Toast.LENGTH_LONG).show()
             }
         }
 
@@ -56,6 +66,44 @@ class SignInActivity : AppCompatActivity() {
             val signUpIntent = Intent(this@SignInActivity, SignUpActivity::class.java)
             requestActivity.launch(signUpIntent)
         }
+
+
+    }
+
+    private fun callLoginService(userId: String, userPw: String) {
+        val requestLoginData = RequestLoginData(
+                id = userId, password = userPw
+        )
+
+        val call: Call<ResponseLoginData> = ServiceCreator.soptService.postLogin(requestLoginData)
+
+        call.enqueue(object : Callback<ResponseLoginData> {
+            override fun onResponse(call: Call<ResponseLoginData>, response: Response<ResponseLoginData>) {
+                if(response.isSuccessful){
+                    val data = response.body()?.data
+                    val nickname = data?.user_nickname
+                    Toast.makeText(this@SignInActivity,
+                            "로그인 성공 $nickname", Toast.LENGTH_LONG).show()
+
+                    val homeIntent = Intent(this@SignInActivity, HomeActivity::class.java)
+                    homeIntent.putExtra("userId", userId);
+                    homeIntent.putExtra("userName",  nickname)
+                    startActivity(homeIntent)
+                }
+                else {
+                    val gson = Gson()
+                    val type = object : TypeToken<ErrorResponse>() {}.type
+                    var errorResponse: ErrorResponse = gson.fromJson(response.errorBody()!!.charStream(), type)
+
+                    Toast.makeText(this@SignInActivity,
+                            errorResponse.message, Toast.LENGTH_LONG).show()
+                }
+           }
+
+            override fun onFailure(call: Call<ResponseLoginData>, t: Throwable) {
+                Log.d("NetworkTest", "error:$t")
+            }
+        })
 
 
     }
