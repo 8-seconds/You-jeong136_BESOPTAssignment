@@ -30,5 +30,7 @@
     <string name="more">more</string>
     <string name="change">change</string>
     <string name="login">login</string>
+    <string name="logout">logout</string>
     <string name="signup">sign up</string>
+
 </resources>

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.sopt.androidseminar.data.LocalRepositoryDataSource
 import org.sopt.androidseminar.data.RepositoryDataSource
+import org.sopt.androidseminar.data.SoptUserAuthStorage
 import org.sopt.androidseminar.databinding.ActivityHomeBinding
 import org.sopt.androidseminar.presentation.model.RepositoryInfo
 
@@ -60,7 +61,15 @@ class HomeActivity : AppCompatActivity() {
                 binding.rvRepoList.layoutManager = GridLayoutManager(this, 2)
             isGrid = !isGrid
         }
+
+        binding.tvLogout.setOnClickListener{
+            SoptUserAuthStorage.clearAuthStorage(this)
+            val loginIntent = Intent(this@HomeActivity, SignInActivity::class.java)
+            startActivity(loginIntent)
+            finish()
+        }
     }
+
 
     override fun onStart() {
         super.onStart()
