@@ -15,6 +15,7 @@ object SoptUserAuthStorage {
         prefs = context.getSharedPreferences(
                 "${context.packageName}.$STORAGE_KEY", Context.MODE_PRIVATE)
     }
+//    SharedPreferences를 얻어오는 부분을 함수로 뺀 경우.
 //    private fun getPreferences(context: Context): SharedPreferences {
 //        return context.getSharedPreferences(
 //                "${context.packageName}.$STORAGE_KEY", Context.MODE_PRIVATE)
