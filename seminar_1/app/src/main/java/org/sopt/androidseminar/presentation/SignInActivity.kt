@@ -11,9 +11,11 @@ import androidx.activity.result.contract.ActivityResultContracts.*
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.sopt.androidseminar.api.ServiceCreator
+import org.sopt.androidseminar.data.SoptUserAuthStorage
 import org.sopt.androidseminar.data.request.RequestLoginData
 import org.sopt.androidseminar.data.response.ErrorResponse
 import org.sopt.androidseminar.data.response.ResponseLoginData
+import org.sopt.androidseminar.util.showToast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -28,9 +30,24 @@ class SignInActivity : AppCompatActivity() {
         binding = ActivitySigninBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        searchUserAuthStorage()
+
         initButtonClickEvent()
 
     }
+
+    private fun searchUserAuthStorage(){
+        if(hasUserAuthData()){
+            callLoginService(
+                SoptUserAuthStorage.getUserId(this),
+                SoptUserAuthStorage.getUserPw(this)
+
+            )
+        }
+    }
+
+    private fun hasUserAuthData() = SoptUserAuthStorage.getUserId(this).isNotEmpty()
+            && SoptUserAuthStorage.getUserPw(this).isNotEmpty()
 
 
     private fun initButtonClickEvent() {
@@ -41,15 +58,11 @@ class SignInActivity : AppCompatActivity() {
             val userPw:String = binding.etPassword.text.toString()
 
             if(isLoginInputNullorBlank(userId, userPw)){
-                Toast.makeText(this@SignInActivity,
-                    "id/pw를 확인해주세요!", Toast.LENGTH_LONG).show()
+//                Toast.makeText(this@SignInActivity,
+//                    "id/pw를 확인해주세요!", Toast.LENGTH_LONG).show()
+                showToast( "id/pw를 확인해주세요!")
             } else {
                 callLoginService(userId, userPw)
-//                val homeIntent = Intent(this@SignInActivity, HomeActivity::class.java)
-//                homeIntent.putExtra("userId", userId);
-//                startActivity(homeIntent)
-//                Toast.makeText(this@SignInActivity,
-//                        "로그인 성공", Toast.LENGTH_LONG).show()
             }
         }
 
@@ -82,21 +95,32 @@ class SignInActivity : AppCompatActivity() {
                 if(response.isSuccessful){
                     val data = response.body()?.data
                     val nickname = data?.user_nickname
-                    Toast.makeText(this@SignInActivity,
-                            "로그인 성공 $nickname", Toast.LENGTH_LONG).show()
+
+                    if(!hasUserAuthData()){
+                        with(binding){
+                            SoptUserAuthStorage.saveUserId(this@SignInActivity, etID.text.toString())
+                            SoptUserAuthStorage.saveUserPw(this@SignInActivity, etPassword.text.toString())
+                        }
+                    }
+
+//                    Toast.makeText(this@SignInActivity,
+//                            "로그인 성공 $nickname", Toast.LENGTH_LONG).show()
+                     showToast( "로그인 성공 $nickname")
 
                     val homeIntent = Intent(this@SignInActivity, HomeActivity::class.java)
                     homeIntent.putExtra("userId", userId);
                     homeIntent.putExtra("userName",  nickname)
                     startActivity(homeIntent)
+                    finish()
                 }
                 else {
                     val gson = Gson()
                     val type = object : TypeToken<ErrorResponse>() {}.type
                     var errorResponse: ErrorResponse = gson.fromJson(response.errorBody()!!.charStream(), type)
 
-                    Toast.makeText(this@SignInActivity,
-                            errorResponse.message, Toast.LENGTH_LONG).show()
+//                    Toast.makeText(this@SignInActivity,
+//                            errorResponse.message, Toast.LENGTH_LONG).show()
+                    showToast(errorResponse.message)
                 }
            }
 
